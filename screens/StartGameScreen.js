@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, StyleSheet, Text, Button } from 'react-native';
+import { View, StyleSheet, Text, Button, TouchableWithoutFeedback, Keyboard } from 'react-native';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
 import Input from '../components/Input';
@@ -12,6 +12,10 @@ const StartGameScreen = props => {
         setEnteredValue(inputText.replace(/[^0-9]/g), '');
     };
     return (
+        <TouchableWithoutFeedback 
+        onPress={() => {
+            Keyboard.dismiss();
+        }}>
         <View style={styles.screen}>
             <Text>Start a New Game</Text>
             <Card style={style.inputContainer}>
@@ -35,6 +39,7 @@ const StartGameScreen = props => {
                 </View>
             </Card>
         </View>
+        </TouchableWithoutFeedback>
     )
 };
 
