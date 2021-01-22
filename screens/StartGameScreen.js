@@ -10,8 +10,12 @@ const StartGameScreen = props => {
                 <Text style={styles.text}>Select a Number</Text>
                 <TextInput />
                 <View style={styles.buttonContainer}>
-                    <Button title="Reset" onPress={() => {}}></Button>
-                    <Button title="Confirm" onPress={() => {}}></Button>
+                   <View style={styles.button}>
+                       <Button title="Reset" onPress={() => {}} color='#c717fc'></Button>
+                   </View>
+                   <View style={styles.button}>
+                       <Button title="Confirm" onPress={() => {}} color='#f7287b'></Button>
+                   </View>
                 </View>
             </Card>
         </View>
@@ -38,6 +42,10 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 15,
     },
+    button: {
+        width: 100,
+        backgroundColor: 
+    }
 });
 
 export default StartGameScreen;
