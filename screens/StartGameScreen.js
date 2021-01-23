@@ -50,11 +50,10 @@ const StartGameScreen = props => {
             <Card style={styles.summaryContainer}>
                 <Text>You Selected</Text>
                 <NumberContainer>{selectedNumber}</NumberContainer>
-                <Button title="Start Game" />
+                <Button title="Start Game" onPress={() => props.onStartGame(selectedNumber)} />
             </Card>
             ) 
-            
-    }
+    };
 
     return (
         <TouchableWithoutFeedback 
