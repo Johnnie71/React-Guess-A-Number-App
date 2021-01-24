@@ -9,10 +9,12 @@ import * as Font from 'expo-font';
 import { Apploading } from 'expo';
 
 const fetchFonts = () => {
-  return Font.loadAsync({
+  return (
+    Font.loadAsync({
     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf')
-  });
+    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+    })
+  );
 };
 
 export default function App() {
@@ -27,7 +29,8 @@ export default function App() {
     <Apploading startAsync={fetchFonts} 
       onFinish={() => setDataLoaded(true)}
       onError={(error) => console.log(error)}
-    />);
+    />
+    );
   }
 
   const configureNewGameHandler = () => {
