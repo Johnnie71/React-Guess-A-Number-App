@@ -10,7 +10,10 @@ const GameOverScreen = props => {
         <View style={styles.screen}>
             <TitleText>The Game is Over!</TitleText>
             <View style={styles.imageContainer}>
-                <Image source={require('../assets/images/success.png')}
+                <Image 
+                fadeDuration={1000}
+                // source={require('../assets/images/success.png')}
+                source={{uri: 'https://artofcreativephotography.com/wp-content/uploads/2019/03/David-Koester-Start-In-Die-Landschaftsfotografie-I.jpg'}}
                 style={styles.image}
                 resizeMode="cover"
                 />
