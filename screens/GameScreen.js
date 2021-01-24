@@ -80,7 +80,7 @@ const GameScreen = props => {
             </Card>
             <View style={styles.list}>
                 <ScrollView>
-                    {pastGuesses.map(guess => renerListItem(guess))}
+                    {pastGuesses.map((guess, index) => renerListItem(guess, pastGuesses.length - index))}
                 </ScrollView>
             </View>
         </View>
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         backgroundColor: 'white',
         flexDirection: 'row',
+        justifyContent: 'space-around'
     },
     list: {
         width: '80%'
