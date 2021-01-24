@@ -61,7 +61,7 @@ const StartGameScreen = props => {
             Keyboard.dismiss();
         }}>
         <View style={styles.screen}>
-            <Text>Start a New Game</Text>
+            <Text style={styles.title}>Start a New Game</Text>
             <Card style={styles.inputContainer}>
                 <Text style={styles.text}>Select a Number</Text>
                 <Input style={styles.input}
@@ -102,6 +102,11 @@ const styles = StyleSheet.create({
     },
     text: {
         alignItems: 'center'
+    },
+    title: {
+        fontSize: 20,
+        marginVertical: 10,
+        fontFamily: 'open-sans-bold'
     },
     inputContainer: {
         width: 300,
