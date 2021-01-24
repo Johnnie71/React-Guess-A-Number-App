@@ -110,7 +110,8 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around'
     },
     list: {
-        width: '80%'
+        width: '80%',
+        flex: 1,
     }
 });
 
