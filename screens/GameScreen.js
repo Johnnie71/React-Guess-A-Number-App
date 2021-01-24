@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, Text, StyleSheet, Button, Alert, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, Alert, ScrollView } from 'react-native';
 
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
@@ -24,7 +24,7 @@ const GameScreen = props => {
 
     const initialGuess = generateRandomBetween(1, 100, props.userChoice);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
-    const [pastGuesses, setPastGuesses] = useState(initialGuess);
+    const [pastGuesses, setPastGuesses] = useState([initialGuess]);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
@@ -32,26 +32,29 @@ const GameScreen = props => {
 
     useEffect(() => {
         if(currentGuess === userChoice) {
-           onGameOver(rounds);
+           onGameOver(pastGuesses.length);
         }
     }, [currentGuess, userChoice, onGameOver ]);
 
     const nextGuessHandler = direction => {
+
         if((direction === 'lower' && currentGuess < props.userChoice) || (direction === 'greater' && currentGuess > props.userChoice)){
             Alert.alert("Don\t lie!", 'You know that this is wrong...', [
                 {text: "Sorry!", style: 'cancel'}
             ]);
             return;
         };
+
         if(direction === 'lower') {
             currentHigh.current = currentGuess;
         } else {
-            currentLow.current = currentGuess;
+            currentLow.current = currentGuess + 1;
         }
+
         const nextNumber = generateRandomBetween(currentLow.current, currentHigh.current, currentGuess);
         setCurrentGuess(nextNumber);
         // setRounds(curRounds => curRounds + 1);
-        setPastGuesses(currentPastGuesses => [nextNumber, ...currentPastGuesses])
+        setPastGuesses(currPastGuesses => [nextNumber, ...currPastGuesses])
     };
 
     return (
@@ -68,11 +71,10 @@ const GameScreen = props => {
             </Card>
             <ScrollView>
                 {pastGuesses.map(guess => (
-                <View key={guess}>
-                    <Text>
-                        {guess}
-                    </Text>
-                </View>))}
+                <View >
+                    <Text>{guess}</Text>
+                </View>
+                ))}
             </ScrollView>
         </View>
     )
