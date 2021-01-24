@@ -8,14 +8,12 @@ import GameOverScreen from './screens/GameOverScreen';
 import * as Font from 'expo-font';
 import { Apploading } from 'expo';
 
-const fetchFonts = () => {
-  return (
-    Font.loadAsync({
-    'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
-    'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
-    })
-  );
-};
+// const fetchFonts = () => {
+//   return Font.loadAsync({
+//     'open-sans': require('./assets/fonts/OpenSans-Regular.ttf'),
+//     'open-sans-bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+//     });
+// };
 
 export default function App() {
 
@@ -24,14 +22,14 @@ export default function App() {
   const [dataLoaded, setDataLoaded] = useState(false);
 
 
-  if (!dataLoaded){
-    return (
-    <Apploading startAsync={fetchFonts} 
-      onFinish={() => setDataLoaded(true)}
-      onError={(error) => console.log(error)}
-    />
-    );
-  }
+  // if (!dataLoaded){
+  //   return (
+  //   <Apploading startAsync={fetchFonts} 
+  //     onFinish={() => setDataLoaded(true)}
+  //     onError={(error) => console.log(error)}
+  //   />
+  //   );
+  // };
 
   const configureNewGameHandler = () => {
     setGuessRounds(0);
@@ -59,7 +57,6 @@ export default function App() {
       <StatusBar style="auto" />
       <Header title="Guess A Number" />
       {content}
-      <GameScreen />
     </View>
   );
 }
