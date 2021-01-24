@@ -21,7 +21,7 @@ const generateRandomBetween = (min, max, exclude) => {
     };
 };
 
-const renerListItem = (listLength, itemData) => ( 
+const renderListItem = (listLength, itemData) => ( 
     <View style={styles.listItem} >
         <BodyText>#{listLength - itemData.index}</BodyText>
         <BodyText>{itemData.item}</BodyText>
@@ -82,7 +82,11 @@ const GameScreen = props => {
                 {/* <ScrollView contentContainerStyle={styles.list}>
                     {pastGuesses.map((guess, index) => renerListItem(guess, pastGuesses.length - index))}
                 </ScrollView> */}
-                <FlatList keyExtractor={item => item} date={pastGuesses} renderItem={renerListItem.bind(this, pastGuesses.length)} />
+                <FlatList keyExtractor={item => item}
+                 data={pastGuesses}
+                 renderItem={renderListItem.bind(this, pastGuesses.length)} 
+                 contentContainerStyle={styles.list}
+                 />
             </View>
         </View>
     )
@@ -109,15 +113,15 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         flexDirection: 'row',
         justifyContent: 'space-around',
-        width: '60%'
+        width: '100%'
     },
     listContainer: {
-        width: '80%',
+        width: '60%',
         flex: 1,
     },
     list: {
         flexGrow: 1,
-        alignItems: 'center',
+        // alignItems: 'center',
         justifyContent: 'flex-end'
     }
 });
