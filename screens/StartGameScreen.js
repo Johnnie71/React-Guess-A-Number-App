@@ -4,7 +4,8 @@ import { View,
      Button,
      TouchableWithoutFeedback,
      Keyboard,
-     Alert 
+     Alert,
+     Dimensions
         } from 'react-native';
 import Card from '../components/Card';
 import Colors from '../constants/colors';
@@ -124,7 +125,8 @@ const styles = StyleSheet.create({
         paddingVertical: 5
     },
     button: {
-        width: 100,
+        // width: 100,
+        width: Dimensions.get('window').width / 3
     },
     input: {
         width: 50,
