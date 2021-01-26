@@ -48,6 +48,19 @@ const GameScreen = props => {
     const { userChoice, onGameOver } = props;
 
     useEffect(() => {
+        const updateLayout = () => {
+            setAvailableDeviceWidth(Dimensions.get('window').width);
+            setAvailableDeviceWidth(Dimensions.get('window').height);
+        };
+
+        Dimensions.addEventListener('change', updateLayout)
+
+        return () => {
+            Dimensions.removeEventListener('change', updateLayout);
+        };
+    });
+
+    useEffect(() => {
         if(currentGuess === userChoice) {
            onGameOver(pastGuesses.length);
         }
@@ -76,11 +89,11 @@ const GameScreen = props => {
 
     let listContainerStyle = styles.listContainer;
 
-    if(Dimensions.get('window').width < 350){
+    if(availableDeviceWidth < 350){
         listContainerStyle = styles.listContainerBig;
     }
 
-    if(Dimensions.get('window').height < 500){
+    if(availableDeviceHeight < 500){
         return (
             <View style={styles.screen}>
             <Text>Opponent's Guess</Text>
