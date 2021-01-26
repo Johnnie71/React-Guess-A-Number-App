@@ -40,6 +40,8 @@ const GameScreen = props => {
     const initialGuess = generateRandomBetween(1, 100, props.userChoice);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
     const [pastGuesses, setPastGuesses] = useState([initialGuess.toString()]);
+    const [availableDeviceWidth, setAvailableDeviceWidth] = useState(Dimensions.get('window').width);
+    const [availableDeviceHeight, setAvailableDeviceHeight] = useState(Dimensions.get('window').height);
     const currentLow = useRef(1);
     const currentHigh = useRef(100);
 
@@ -78,18 +80,19 @@ const GameScreen = props => {
         listContainerStyle = styles.listContainerBig;
     }
 
-    return (
-        <View style={styles.screen}>
+    if(Dimensions.get('window').height < 500){
+        return (
+            <View style={styles.screen}>
             <Text>Opponent's Guess</Text>
-            <NumberContainer>{currentGuess}</NumberContainer>
-            <Card style={styles.buttonContainer}>
+            <View style={styles.control}>
                 <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
                     <Ionicons name="md-remove" size={24} color="white" />
                 </MainButton>
+                    <NumberContainer>{currentGuess}</NumberContainer>
                 <MainButton onPress={nextGuessHandler.bind(this, 'greater')}>
                     <Ionicons name="md-add" size={24} color="white" />
                 </MainButton>
-            </Card>
+            </View>
             <View style={listContainerStyle}>
                 {/* <ScrollView contentContainerStyle={styles.list}>
                     {pastGuesses.map((guess, index) => renerListItem(guess, pastGuesses.length - index))}
@@ -101,7 +104,8 @@ const GameScreen = props => {
                  />
             </View>
         </View>
-    )
+        );
+    }
 };
 
 const styles = StyleSheet.create({
@@ -140,6 +144,12 @@ const styles = StyleSheet.create({
         flexGrow: 1,
         // alignItems: 'center',
         justifyContent: 'flex-end'
+    },
+    control: {
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
+        width: '80%'
     }
 });
 
