@@ -4,7 +4,8 @@ import { View, StyleSheet,
      Image,
      Text,
      Dimensions,
-     ScrollView
+     ScrollView,
+     SafeAreaView
  } from 'react-native';
 
 import BodyText from '../components/BodyText';
@@ -15,6 +16,7 @@ import MainButton from '../components/MainButton';
 
 const GameOverScreen = props => {
     return (
+        <SafeAreaView>
         <ScrollView>
             <View style={styles.screen}>
                 <TitleText>The Game is Over!</TitleText>
@@ -38,6 +40,7 @@ const GameOverScreen = props => {
                 </MainButton>
             </View>
         </ScrollView>
+        </SafeAreaView>
 
     ) 
 };
