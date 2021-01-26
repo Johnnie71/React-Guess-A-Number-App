@@ -72,6 +72,12 @@ const GameScreen = props => {
         setPastGuesses(currPastGuesses => [nextNumber.toString(), ...currPastGuesses])
     };
 
+    let listContainerStyle = styles.listContainer;
+
+    if(Dimensions.get('window').width < 350){
+        listContainerStyle = styles.listContainerBig;
+    }
+
     return (
         <View style={styles.screen}>
             <Text>Opponent's Guess</Text>
@@ -122,8 +128,13 @@ const styles = StyleSheet.create({
         width: '100%'
     },
     listContainer: {
-        width: '60%',
         flex: 1,
+        width:'60%',
+
+    },
+    listContainerBig: {
+        flex: 1,
+        width:'80%',
     },
     list: {
         flexGrow: 1,
