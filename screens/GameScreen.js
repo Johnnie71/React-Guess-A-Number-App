@@ -50,7 +50,7 @@ const GameScreen = props => {
     useEffect(() => {
         const updateLayout = () => {
             setAvailableDeviceWidth(Dimensions.get('window').width);
-            setAvailableDeviceWidth(Dimensions.get('window').height);
+            setAvailableDeviceHeight(Dimensions.get('window').height);
         };
 
         Dimensions.addEventListener('change', updateLayout)
@@ -97,7 +97,7 @@ const GameScreen = props => {
         return (
             <View style={styles.screen}>
             <Text>Opponent's Guess</Text>
-            <View style={styles.control}>
+            <View style={styles.controls}>
                 <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
                     <Ionicons name="md-remove" size={24} color="white" />
                 </MainButton>
@@ -119,6 +119,33 @@ const GameScreen = props => {
         </View>
         );
     }
+
+    return (
+        <View style={styles.screen}>
+            <Text>Opponent's Guess</Text>
+                <NumberContainer>{currentGuess}</NumberContainer>
+
+                <Card style={styles.buttonContainer}>
+                    <MainButton onPress={nextGuessHandler.bind(this, 'lower')}>
+                        <Ionicons name="md-remove" size={24} color="white" />
+                    </MainButton>
+                    <MainButton onPress={nextGuessHandler.bind(this, 'greater')}>
+                        <Ionicons name="md-add" size={24} color="white" />
+                    </MainButton>
+                </Card>
+          
+            <View style={listContainerStyle}>
+                {/* <ScrollView contentContainerStyle={styles.list}>
+                    {pastGuesses.map((guess, index) => renerListItem(guess, pastGuesses.length - index))}
+                </ScrollView> */}
+                <FlatList keyExtractor={item => item}
+                 data={pastGuesses}
+                 renderItem={renderListItem.bind(this, pastGuesses.length)} 
+                 contentContainerStyle={styles.list}
+                 />
+            </View>
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
@@ -158,7 +185,7 @@ const styles = StyleSheet.create({
         // alignItems: 'center',
         justifyContent: 'flex-end'
     },
-    control: {
+    controls: {
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
