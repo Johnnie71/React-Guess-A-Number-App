@@ -11,7 +11,7 @@ const MainButton = props => {
 
     let ButtonComponent = TouchableOpacity;
 
-    if (Platform.os === 'android' && Platform.Version >= 21){
+    if (Platform.Version >= 21){
         ButtonComponent = TouchableNativeFeedback;
     }
 
