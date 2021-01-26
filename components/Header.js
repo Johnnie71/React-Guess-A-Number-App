@@ -16,14 +16,14 @@ const styles = StyleSheet.create({
         width: '100%',
         height: 90,
         paddingTop: 36,
-        backgroundColor: Platform.OS === 'android' ? Colors.primary : 'white',
+        backgroundColor: Platform.OS === 'android' ? Colors.primary : Colors.primary,
         alignItems: 'center',
         justifyContent: 'center',
-        borderBottomColor: Platform.OS === 'ios' ? '#ccc' : 'transparent',
-        borderBottomWidth: Platform.OS === 'ios' ? 1 : 0,
+        borderBottomColor: Platform.OS === 'ios' ? 'transparent' : Colors.accent,
+        borderBottomWidth: Platform.OS === 'ios' ? 0 : 1,
      },
      title: {
-         color: Platform.OS === 'ios' ? Colors.primary : 'white'
+         color: Platform.OS === 'ios' ? Colors.primary : 'white',
      }
 });
 
