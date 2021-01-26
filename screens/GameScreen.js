@@ -6,6 +6,9 @@ import { View,
      ScrollView,
      FlatList,
      Dimensions } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+// import { ScreenOrientation } from 'expo';
+import * as ScreenOrientation from 'expo-screen-orientation';
 
 import NumberContainer from '../components/NumberContainer';
 import Card from '../components/Card';
@@ -13,7 +16,6 @@ import DefaultStyles from '../constants/default-styles';
 import MainButton from '../components/MainButton';
 import BodyText from '../components/BodyText';
 
-import { Ionicons } from '@expo/vector-icons';
 
 
 const generateRandomBetween = (min, max, exclude) => {
@@ -36,6 +38,7 @@ const renderListItem = (listLength, itemData) => (
     
 
 const GameScreen = props => {
+    ScreenOrientation.lockAsync(ScreenOrientation.OrientationLock.PORTRAIT)
 
     const initialGuess = generateRandomBetween(1, 100, props.userChoice);
     const [currentGuess, setCurrentGuess] = useState(initialGuess);
